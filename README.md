@@ -29,7 +29,21 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
----
+In order to recommend a song based on the knowledge of how real world recommendations for large-scale applications like YouTube and Spotify, scores are assigned to each song in a given data set based on the song's attributes similiarity to the user's preferences (content-based filtering) for which after scores are assigned, the songs with their scores are organized in a high score to low score manner, and we'll pull the top songs from the list; the number of songs we get starting from the top varies.
+For the system, I would have a `Song` use the attributes already provided in `recommender.py` as provided: 
+    - id: int
+    - title: str
+    - artist: str
+    - genre: str
+    - mood: str
+    - energy: float
+    - tempo_bpm: float
+    - valence: float
+    - danceability: float
+    - acousticness: float
+These store essential information that I would need for a song in general. Of these attributes for the `Song` class, I would use the following attributes to develop the recommender system and compute a similarity value: "genre", "mood", "energy", "tempo_bpm", "valence", "danceability", "acousticness". 
+
+The information that `UserProfile` will store would mostly be 
 
 ## Getting Started
 
