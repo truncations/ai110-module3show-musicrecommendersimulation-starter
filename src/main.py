@@ -20,6 +20,7 @@ def main() -> None:
 
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
+    print(f"\nLoaded songs: {len(songs)}")
     print("\nTop recommendations:\n")
     for rec in recommendations:
         # You decide the structure of each returned item.
