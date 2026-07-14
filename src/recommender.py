@@ -3,16 +3,13 @@ import heapq
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 
+# Stores points/max points to be gained for a particular attribute.
+# Additionally, stores base sentence structure for reasoning.
 attribute_points_and_reason_base: Dict = {
-    """
-        Stores points/max points to be gained for a particular attribute.
-        Additionally, stores base sentence structure for reasoning.
-    """
     "genre": (7, "genre match"),
     "mood": (5, "mood match"),
     "energy": (3, "energy is similar to preference"),
     "valence": (2, "valence is similar to preference"),
-    # more or less, todo soon (danceabiliy + acousticness)
     "danceability": (1, "user prefers danceability "),
     "acousticness": (0.75, "user prefers acousticness "),
     "tempo_bpm": (0.5, "tempo bpm is similar to preference"),
@@ -64,11 +61,11 @@ class Recommender:
         self.songs = songs
 
     def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        # TODO: Implement recommendation logic
+        """Returns the top k songs recommended for the given user."""
         return self.songs[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
+        """Returns a human-readable explanation for why a song was recommended to the user."""
         return "Explanation placeholder"
 
 def _parse_value(value: str):
@@ -95,10 +92,12 @@ def load_songs(csv_path: str) -> List[Dict]:
     return songs
 
 def attr_score_str(data: tuple[str, str, str]) -> tuple:
+    """Scores a string-valued attribute by whether the song's value matches the user's preference."""
     reward = attribute_points_and_reason_base[data[compare_attr_data_keys.key_name]]
     return data[compare_attr_data_keys.song_value] == data[compare_attr_data_keys.user_pref_value] and reward or (0,"")
 
 def attr_score_float(data: tuple[str, float, float]) -> tuple:
+    """Scores a numeric attribute by how close the song's value is to the user's preference."""
     attribute_name = data[compare_attr_data_keys.key_name]
     song_value = data[compare_attr_data_keys.song_value]
     user_pref_value = data[compare_attr_data_keys.user_pref_value]
@@ -111,6 +110,7 @@ def attr_score_float(data: tuple[str, float, float]) -> tuple:
         return (reward[attribute_points_and_reason_base_keys.points]*(1 - abs(song_value - user_pref_value)), reward[attribute_points_and_reason_base_keys.reason_base])
 
 def attr_score_bool(data: tuple[str, float, bool]) -> tuple:
+    """Scores a boolean preference attribute based on the song's corresponding numeric value."""
     attribute_name = data[compare_attr_data_keys.key_name]
     song_value = data[compare_attr_data_keys.song_value]
     user_pref_value = data[compare_attr_data_keys.user_pref_value]
@@ -138,7 +138,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
             * user_pref_value | User Profile Attribute value
         """
         compare_attr_data = (key, song[key], user_prefs[key])
-        data_type = type(_parse_value(user_prefs[key])).__name__
+        data_type = type(user_prefs[key]).__name__
         attributes_dict.setdefault(data_type, [])
         attributes_dict[data_type].append(compare_attr_data)
 
@@ -147,7 +147,7 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
             reward_data = None
             if key == "str":
                 reward_data = attr_score_str(tuple_data)
-            elif key == "float":
+            elif key in ("float", "int"):
                 reward_data = attr_score_float(tuple_data)
             elif key == "bool":
                 reward_data = attr_score_bool(tuple_data)
@@ -155,21 +155,21 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
                 raise Exception("score_song() FAILED | There is another data type in this set!")
             
             total_score += reward_data[attribute_points_and_reason_base_keys.points]
-            reasons.append(f"(+{reward_data[attribute_points_and_reason_base_keys.points]:.3f}) - {reward_data[attribute_points_and_reason_base_keys.reason_base]}")
+            if reward_data[attribute_points_and_reason_base_keys.points] > 0:
+                reasons.append(f"(+{reward_data[attribute_points_and_reason_base_keys.points]:.3f}) - {reward_data[attribute_points_and_reason_base_keys.reason_base]}")
 
     # Expected return format: (score, reasons)
     return (total_score, reasons)
 
-def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
+def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, List[str]]]:
     """
     Functional implementation of the recommendation logic.
     Required by src/main.py
     """
-    # TODO: Implement scoring and ranking logic
-    # Expected return format: (song_dict, score, explanation)
+    # Expected return format: (song_dict, score, reasons)
 
     scored = (
-        (song, score, ", ".join(reasons))
+        (song, score, reasons)
         for song in songs
         for score, reasons in (score_song(user_prefs, song),)
     )

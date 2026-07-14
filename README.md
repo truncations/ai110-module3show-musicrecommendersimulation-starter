@@ -138,13 +138,71 @@ You can add more tests in `tests/test_recommender.py`.
 
 Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
+Assuming the following:
+user_prefs = {
+    "genre": "pop",
+    "mood": "happy",
+    "energy":  0.90,
+    "acousticness": False,
+    "danceability": True,
+    "tempo_bpm": 140,
+    "valence": 0.7,
+}
+
 ```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
+Loaded songs: 18
+
+Top Recommendations
+============================================================
+
+1. Sunrise City - Score: 18.31
+   Artist: Neon Echo
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+2.760) - energy is similar to preference
+     - (+1.720) - valence is similar to preference
+     - (+0.615) - user prefers acousticness less
+     - (+0.790) - user prefers danceability more
+     - (+0.421) - tempo bpm is similar to preference
+
+2. Gym Hero - Score: 13.83
+   Artist: Max Pulse
+   Reasons:
+     - (+7.000) - genre match
+     - (+2.910) - energy is similar to preference
+     - (+1.860) - valence is similar to preference
+     - (+0.712) - user prefers acousticness less
+     - (+0.880) - user prefers danceability more
+     - (+0.471) - tempo bpm is similar to preference
+
+3. Rooftop Lights - Score: 11.11
+   Artist: Indigo Parade
+   Reasons:
+     - (+5.000) - mood match
+     - (+2.580) - energy is similar to preference
+     - (+1.780) - valence is similar to preference
+     - (+0.488) - user prefers acousticness less
+     - (+0.820) - user prefers danceability more
+     - (+0.443) - tempo bpm is similar to preference
+
+4. Neon Pulse Rave - Score: 6.57
+   Artist: DJ Fractal
+   Reasons:
+     - (+2.940) - energy is similar to preference
+     - (+1.600) - valence is similar to preference
+     - (+0.660) - user prefers acousticness less
+     - (+0.910) - user prefers danceability more
+     - (+0.457) - tempo bpm is similar to preference
+
+5. Concrete Kingdom - Score: 6.54
+   Artist: MC Ironside
+   Reasons:
+     - (+2.700) - energy is similar to preference
+     - (+1.960) - valence is similar to preference
+     - (+0.690) - user prefers acousticness less
+     - (+0.850) - user prefers danceability more
+     - (+0.339) - tempo bpm is similar to preference
 ```
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->

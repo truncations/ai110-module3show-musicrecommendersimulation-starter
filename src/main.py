@@ -18,9 +18,8 @@ def main() -> None:
     # Starter example profile
     user_prefs = {
         "genre": "pop",
-        "mood": "intense",
+        "mood": "happy",
         "energy":  0.90,
-        # TODO: im pretty aware this variable naming is weird
         "acousticness": False,
         "danceability": True,
         "tempo_bpm": 140,
@@ -30,14 +29,17 @@ def main() -> None:
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
     print(f"\nLoaded songs: {len(songs)}")
-    print("\nTop recommendations:\n")
-    for rec in recommendations:
-        # You decide the structure of each returned item.
-        # A common pattern is: (song, score, explanation)
-        song, score, explanation = rec
-        print(f"{song['title']} - Score: {score:.2f}")
-        print(f"Because: {explanation}")
-        print()
+    print("\nTop Recommendations")
+    print("=" * 60)
+    for rank, (song, score, reasons) in enumerate(recommendations, start=1):
+        print(f"\n{rank}. {song['title']} - Score: {score:.2f}")
+        print(f"   Artist: {song['artist']}")
+        print("   Reasons:")
+        for reason in reasons:
+            if reason.endswith("- "):
+                continue  # zero-point, no explanatory text to show
+            print(f"     - {reason}")
+    print()
 
 
 if __name__ == "__main__":
