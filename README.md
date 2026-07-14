@@ -205,6 +205,367 @@ Top Recommendations
      - (+0.339) - tempo bpm is similar to preference
 ```
 
+## System Evaluation Results
+user_prefs_test_2 = {
+        "genre": "lofi",
+        "mood": "chill",
+        "energy": 0.20,
+        "acousticness": True,
+        "danceability": False,
+        "tempo_bpm": 70,
+        "valence": 0.4,
+    }
+
+```
+=== Test 2 (lofi/chill) ===
+============================================================
+Selected preferences:
+   genre: lofi
+   mood: chill
+   energy: 0.2
+   acousticness: True
+   danceability: False
+   tempo_bpm: 70
+   valence: 0.4
+
+1. Library Rain - Score: 17.70
+   Artist: Paper Lanterns
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+2.550) - energy is similar to preference
+     - (+1.600) - valence is similar to preference
+     - (+0.645) - user prefers acousticness more
+     - (+0.420) - user prefers danceability less
+     - (+0.486) - tempo bpm is similar to preference
+
+2. Midnight Coding - Score: 17.38
+   Artist: LoRoom
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+2.340) - energy is similar to preference
+     - (+1.680) - valence is similar to preference
+     - (+0.532) - user prefers acousticness more
+     - (+0.380) - user prefers danceability less
+     - (+0.449) - tempo bpm is similar to preference
+
+3. Focus Flow - Score: 12.44
+   Artist: LoRoom
+   Reasons:
+     - (+7.000) - genre match
+     - (+2.400) - energy is similar to preference
+     - (+1.620) - valence is similar to preference
+     - (+0.585) - user prefers acousticness more
+     - (+0.400) - user prefers danceability less
+     - (+0.438) - tempo bpm is similar to preference
+
+4. Spacewalk Thoughts - Score: 10.97
+   Artist: Orbit Bloom
+   Reasons:
+     - (+5.000) - mood match
+     - (+2.760) - energy is similar to preference
+     - (+1.500) - valence is similar to preference
+     - (+0.690) - user prefers acousticness more
+     - (+0.590) - user prefers danceability less
+     - (+0.429) - tempo bpm is similar to preference
+
+5. Winter's Requiem - Score: 6.63
+   Artist: Elena Voss
+   Reasons:
+     - (+2.850) - energy is similar to preference
+     - (+1.800) - valence is similar to preference
+     - (+0.712) - user prefers acousticness more
+     - (+0.800) - user prefers danceability less
+     - (+0.471) - tempo bpm is similar to preference
+```
+
+user_prefs_test_3 = {
+        "genre": "rock",
+        "mood": "intense",
+        "energy": 0.95,
+        "acousticness": False,
+        "danceability": False,
+        "tempo_bpm": 160,
+        "valence": 0.2,
+    }
+
+```
+=== Test 3 (rock/intense) ===
+============================================================
+Selected preferences:
+   genre: rock
+   mood: intense
+   energy: 0.95
+   acousticness: False
+   danceability: False
+   tempo_bpm: 160
+   valence: 0.2
+
+1. Storm Runner - Score: 17.81
+   Artist: Voltline
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+2.880) - energy is similar to preference
+     - (+1.440) - valence is similar to preference
+     - (+0.675) - user prefers acousticness less
+     - (+0.340) - user prefers danceability less
+     - (+0.475) - tempo bpm is similar to preference
+
+2. Gym Hero - Score: 10.04
+   Artist: Max Pulse
+   Reasons:
+     - (+5.000) - mood match
+     - (+2.940) - energy is similar to preference
+     - (+0.860) - valence is similar to preference
+     - (+0.712) - user prefers acousticness less
+     - (+0.120) - user prefers danceability less
+     - (+0.412) - tempo bpm is similar to preference
+
+3. Iron Descent - Score: 6.49
+   Artist: Grave Circuit
+   Reasons:
+     - (+2.940) - energy is similar to preference
+     - (+1.900) - valence is similar to preference
+     - (+0.728) - user prefers acousticness less
+     - (+0.450) - user prefers danceability less
+     - (+0.476) - tempo bpm is similar to preference
+
+4. Night Drive Loop - Score: 5.02
+   Artist: Neon Echo
+   Reasons:
+     - (+2.400) - energy is similar to preference
+     - (+1.420) - valence is similar to preference
+     - (+0.585) - user prefers acousticness less
+     - (+0.270) - user prefers danceability less
+     - (+0.344) - tempo bpm is similar to preference
+
+5. Concrete Kingdom - Score: 4.73
+   Artist: MC Ironside
+   Reasons:
+     - (+2.550) - energy is similar to preference
+     - (+1.040) - valence is similar to preference
+     - (+0.690) - user prefers acousticness less
+     - (+0.150) - user prefers danceability less
+     - (+0.297) - tempo bpm is similar to preference
+```
+
+user_prefs_conflict_genre_vs_tempo = {
+        "genre": "classical",
+        "mood": "melancholic",
+        "energy": 0.90,
+        "acousticness": False,
+        "danceability": True,
+        "tempo_bpm": 180,
+        "valence": 0.9,
+    }
+
+```
+=== Conflict: genre vs tempo ===
+============================================================
+Selected preferences:
+   genre: classical
+   mood: melancholic
+   energy: 0.9
+   acousticness: False
+   danceability: True
+   tempo_bpm: 180
+   valence: 0.9
+
+1. Winter's Requiem - Score: 14.27
+   Artist: Elena Voss
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+1.050) - energy is similar to preference
+     - (+0.800) - valence is similar to preference
+     - (+0.038) - user prefers acousticness less
+     - (+0.200) - user prefers danceability more
+     - (+0.183) - tempo bpm is similar to preference
+
+2. Neon Pulse Rave - Score: 6.87
+   Artist: DJ Fractal
+   Reasons:
+     - (+2.940) - energy is similar to preference
+     - (+2.000) - valence is similar to preference
+     - (+0.660) - user prefers acousticness less
+     - (+0.910) - user prefers danceability more
+     - (+0.356) - tempo bpm is similar to preference
+
+3. Gym Hero - Score: 6.61
+   Artist: Max Pulse
+   Reasons:
+     - (+2.910) - energy is similar to preference
+     - (+1.740) - valence is similar to preference
+     - (+0.712) - user prefers acousticness less
+     - (+0.880) - user prefers danceability more
+     - (+0.367) - tempo bpm is similar to preference
+
+4. Sunrise City - Score: 6.37
+   Artist: Neon Echo
+   Reasons:
+     - (+2.760) - energy is similar to preference
+     - (+1.880) - valence is similar to preference
+     - (+0.615) - user prefers acousticness less
+     - (+0.790) - user prefers danceability more
+     - (+0.328) - tempo bpm is similar to preference
+
+5. Concrete Kingdom - Score: 6.06
+   Artist: MC Ironside
+   Reasons:
+     - (+2.700) - energy is similar to preference
+     - (+1.560) - valence is similar to preference
+     - (+0.690) - user prefers acousticness less
+     - (+0.850) - user prefers danceability more
+     - (+0.264) - tempo bpm is similar to preference
+```
+
+user_prefs_conflict_impossible_combo = {
+        "genre": "house",
+        "mood": "euphoric",
+        "energy": 0.88,
+        "acousticness": True,
+        "danceability": True,
+        "tempo_bpm": 128,
+        "valence": 0.90,
+    }
+
+```
+=== Conflict: impossible combo ===
+============================================================
+Selected preferences:
+   genre: house
+   mood: euphoric
+   energy: 0.88
+   acousticness: True
+   danceability: True
+   tempo_bpm: 128
+   valence: 0.9
+
+1. Neon Pulse Rave - Score: 18.50
+   Artist: DJ Fractal
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+3.000) - energy is similar to preference
+     - (+2.000) - valence is similar to preference
+     - (+0.090) - user prefers acousticness more
+     - (+0.910) - user prefers danceability more
+     - (+0.500) - tempo bpm is similar to preference
+
+2. Sunrise City - Score: 6.09
+   Artist: Neon Echo
+   Reasons:
+     - (+2.820) - energy is similar to preference
+     - (+1.880) - valence is similar to preference
+     - (+0.135) - user prefers acousticness more
+     - (+0.790) - user prefers danceability more
+     - (+0.461) - tempo bpm is similar to preference
+
+3. Rooftop Lights - Score: 6.03
+   Artist: Indigo Parade
+   Reasons:
+     - (+2.640) - energy is similar to preference
+     - (+1.820) - valence is similar to preference
+     - (+0.262) - user prefers acousticness more
+     - (+0.820) - user prefers danceability more
+     - (+0.484) - tempo bpm is similar to preference
+
+4. Gym Hero - Score: 5.99
+   Artist: Max Pulse
+   Reasons:
+     - (+2.850) - energy is similar to preference
+     - (+1.740) - valence is similar to preference
+     - (+0.038) - user prefers acousticness more
+     - (+0.880) - user prefers danceability more
+     - (+0.485) - tempo bpm is similar to preference
+
+5. Noche Caliente - Score: 5.81
+   Artist: Sol y Ritmo
+   Reasons:
+     - (+2.460) - energy is similar to preference
+     - (+1.860) - valence is similar to preference
+     - (+0.225) - user prefers acousticness more
+     - (+0.870) - user prefers danceability more
+     - (+0.391) - tempo bpm is similar to preference
+```
+
+user_prefs_tiebreak_lofi_chill = {
+        "genre": "lofi",
+        "mood": "chill",
+        "energy": 0.40,
+        "acousticness": True,
+        "danceability": True,
+        "tempo_bpm": 79,
+        "valence": 0.58,
+    }
+
+```
+=== Tie-break: lofi/chill ===
+============================================================
+Selected preferences:
+   genre: lofi
+   mood: chill
+   energy: 0.4
+   acousticness: True
+   danceability: True
+   tempo_bpm: 79
+   valence: 0.58
+
+1. Midnight Coding - Score: 18.55
+   Artist: LoRoom
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+2.940) - energy is similar to preference
+     - (+1.960) - valence is similar to preference
+     - (+0.532) - user prefers acousticness more
+     - (+0.620) - user prefers danceability more
+     - (+0.494) - tempo bpm is similar to preference
+
+2. Library Rain - Score: 18.49
+   Artist: Paper Lanterns
+   Reasons:
+     - (+7.000) - genre match
+     - (+5.000) - mood match
+     - (+2.850) - energy is similar to preference
+     - (+1.960) - valence is similar to preference
+     - (+0.645) - user prefers acousticness more
+     - (+0.580) - user prefers danceability more
+     - (+0.456) - tempo bpm is similar to preference
+
+3. Focus Flow - Score: 13.66
+   Artist: LoRoom
+   Reasons:
+     - (+7.000) - genre match
+     - (+3.000) - energy is similar to preference
+     - (+1.980) - valence is similar to preference
+     - (+0.585) - user prefers acousticness more
+     - (+0.600) - user prefers danceability more
+     - (+0.494) - tempo bpm is similar to preference
+
+4. Spacewalk Thoughts - Score: 10.98
+   Artist: Orbit Bloom
+   Reasons:
+     - (+5.000) - mood match
+     - (+2.640) - energy is similar to preference
+     - (+1.860) - valence is similar to preference
+     - (+0.690) - user prefers acousticness more
+     - (+0.410) - user prefers danceability more
+     - (+0.380) - tempo bpm is similar to preference
+
+5. Coffee Shop Stories - Score: 6.30
+   Artist: Slow Stereo
+   Reasons:
+     - (+2.910) - energy is similar to preference
+     - (+1.740) - valence is similar to preference
+     - (+0.667) - user prefers acousticness more
+     - (+0.540) - user prefers danceability more
+     - (+0.439) - tempo bpm is similar to preference
+```
+
+
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
 
 ---
