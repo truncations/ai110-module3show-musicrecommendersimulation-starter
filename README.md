@@ -43,7 +43,9 @@ For the system, I would have a `Song` use the attributes already provided in `re
     - acousticness: float
 These store essential information that I would need for a song in general. Of these attributes for the `Song` class, I would use the following attributes to develop the recommender system and compute a similarity value: "genre", "mood", "energy", "tempo_bpm", "valence", "danceability", "acousticness". 
 
-The information that `UserProfile` will store would mostly be 
+The information that `UserProfile` will store would be what `Song` stores except that it would store a target value for each `Song` attribute (basically getting a user's preference for genre, mood,  energy, tempo_bpm, valence, danceability, and acousticness). If there are missing variables that need to be added, it will be done so during system implementation. (likes_danceability, target_valence, target_tempo_bpm)
+
+In order for `Recommender` to compute a score for each song, we'll use a basic mathematical error analysis between a `Song`'s attribute (values) and the `UserProfile`'s information. We may use the error formula (1 - |A - B|) as one example, or if the values are NOT in a value manner, we may use some data structures to determine "similarities" between genres or moods. Then we'll weigh each attribute being used to determine a song for recommendation. Once weighed, we'll add sub-scores to the final score for each considered attribute (and consider their weight towards the final score). This score will be then used to compute a list of songs sorted by top score to lowest score, and we'll pick out the first few top elements.
 
 ## Getting Started
 

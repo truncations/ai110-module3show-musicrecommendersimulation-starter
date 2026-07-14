@@ -47,3 +47,16 @@ Prompt a mathematical based scoring rule:
     For genre and mood matching, because they both are string-based and not actually numerical-based, how could I compute a value of error between the song's genre/mood to the user's preference? There are genres out in music that can be closely similar and I would like to know how I could handle these situations.
     
     Lastly, given the context of the recommender file that contains the classes to be used for this project, how would I determine features that the classes 'Song', 'UserProfile' would use? Does features under this context of developing a song recommender system mean what attributes from those classes would I use or methods to create for it? (Or would it be both?)"
+
+## 7/14/2026
+Define specific "taste profile":
+
+taste_profile = {
+    "favorite_genre": "pop"
+    "favorite_mood": "intense"
+    "target_energy": "0.90"
+    "likes_acoustic": False
+    "likes_danceability": True
+    "target_tempo_bpm": "140"
+    "target_valence": "0.7"
+}
