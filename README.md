@@ -578,6 +578,16 @@ Use this section to document the experiments you ran. For example:
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users
 
+I mostly did experiments to see what occurred when changing my weights accordingly.
+
+One test I did was to try to increase the weighing with "vibe"-based features of the song rather than content-based features like "genre" and "mood" which doesn't always tell the full feeling of the song. I reduced the weights of genre and mood respectively; 7 to 4, and 5 to 3.5, while increased the rest:
+    energy: 3 -> 3.5
+    valence: 2 -> 2.25
+    danceability: 1 -> 1.5
+    acousticness: 0.75 -> 1
+    tempo_bpm: 0.5 -> 0.75
+Unfortunately, even with these changes the #1 recommendation in all tests for the user profiles never changed because of the fact that genre+mood made up nearly 50% of the score which can be highly impactful with how similar a song can be based on what the recommender thinks. Sometimes, some songs had their margins of score reduced and some songs in ranking changed thanks to actually correctly weighing on vibes than just "content" fitting like when testing with "lofi-chill" where "Focus Flow" is now ranked lower than "Spacewalk Thoughts" since the feeling of the song matches more than "Focus Flow".
+
 ---
 
 ## Limitations and Risks
@@ -605,5 +615,7 @@ Write 1 to 2 paragraphs here about what you learned:
 - about how recommenders turn data into predictions
 - about where bias or unfairness could show up in systems like this
 
-
+Recommenders turn data into predictions by parsing the data and using algorithms to generate a score that can then be used for to deduce a prediction. The recommending systems take a song's features (ex. genre, mood, title, artist) and use that information to compare it to a user's preference to determine whether the song's features match with the user's preferences. Once they have determined the similarity amount of each feature being compared, they will parse this into a score that will then be used to recommend songs to the user.
+Unfortunately, bias shows up in these kinds of systems when the dataset is too small leading to representation bias in the catalog where the songs being recommended may have a ridiculously low similarity score since it's possible in this case that most other songs may not fit with the user's preference. With this, the only accurate set of data for recommending songs would be "lofi" as a genre since it has more than one entry in the dataset. Additionally, with how the score is weighed by features of the song, some features may not be prioritized into the score as much as others which can create bias in whether the recommender system recommends music to the user because the genre/mood is the same, rather than recommending music to the uesr because it "vibes" with them.
+ 
 
