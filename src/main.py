@@ -9,6 +9,8 @@ You will implement the functions in recommender.py:
 - recommend_songs
 """
 
+from tabulate import tabulate
+
 from src.recommender import load_songs, recommend_songs
 
 
@@ -104,14 +106,23 @@ def main() -> None:
         print("Selected preferences:")
         for key, value in prefs.items():
             print(f"   {key}: {value}")
+
+        table_rows = []
         for rank, (song, score, reasons) in enumerate(recommendations, start=1):
-            print(f"\n{rank}. {song['title']} - Score: {score:.2f}")
-            print(f"   Artist: {song['artist']}")
-            print("   Reasons:")
-            for reason in reasons:
-                if reason.endswith("- "):
-                    continue  # zero-point, no explanatory text to show
-                print(f"     - {reason}")
+            visible_reasons = [r for r in reasons if not r.endswith("- ")]
+            reasons_cell = "\n".join(visible_reasons) if visible_reasons else "-"
+            table_rows.append(
+                [rank, song["title"], song["artist"], f"{score:.2f}", reasons_cell]
+            )
+
+        print()
+        print(
+            tabulate(
+                table_rows,
+                headers=["#", "Title", "Artist", "Score", "Reasons"],
+                tablefmt="grid",
+            )
+        )
         print()
 
 
