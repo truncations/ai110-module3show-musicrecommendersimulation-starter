@@ -592,7 +592,7 @@ Examples:
 
 You will go deeper on this in your model card.
 
----
+Some limitations of my systems that create bias are that genres and moods must be exactly matching, even though some genres and moods can be similar but not exact to the user's preference. (TLDR; hybrid genres are highly penalized) Mood is heavily fragmented as most of the dataset have their own unique moods, and so it leads to genre+mood being relied on rather than actual music taste. Additionally, for the acousticness/danceability attributes of a song, they are strictly based on whether a user likes acousticness or likes danceability, where if they do "like" acousticness/danceability that higher values reward more, and vice versa rather than actually finding the target acousticness/danceability value that someone would prefer which creates bias; for example, some users may like acousticness but not heavy acoustic.
 
 ## Reflection
 
